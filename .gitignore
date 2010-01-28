@@ -1,3 +1,4 @@
 .nbproject
-assets/*
-pritected/runtime/*
+sites/files/*
+sites/private/*
+settings.php
