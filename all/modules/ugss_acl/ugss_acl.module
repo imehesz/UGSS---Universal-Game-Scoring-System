@@ -1,0 +1,35 @@
+<?php
+	/**
+	 *
+	 */
+	function ugss_acl_form_alter( &$form, $form_state, $form_id )
+	{
+		global $user;
+
+		switch( $form_id )
+		{
+				case 'user_register_form':
+
+						$options['team1'] = 'team1';
+						$options['team2'] = 'team2';
+						$options['team3'] = 'team3';
+
+						$form['team_settings'] = array(
+								'#type'		=> 'fieldset',
+								'#title'	=> t('Team Settings'),
+								'#tree'		=> true,
+								'#css'		=> 'style:background-color:#f00',
+						);
+
+						$form['team_settings']['team'] = array(
+								'#type' 	=> 'select',
+								'#title' 	=> t('Team(s)'),
+								// '#required' => TRUE,
+								'#description' => t('Pick the team(s) for this player'),
+								'#options' 	=> $options,
+								'#size'		=> 5
+						);
+
+						break;
+		}	
+	}

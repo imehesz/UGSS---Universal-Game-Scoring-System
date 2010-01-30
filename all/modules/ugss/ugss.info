@@ -1,0 +1,9 @@
+; $Id$
+
+name 	= UGSS 
+description = "The main module for the UGSS project"
+package = UGSS
+version	= 1.0
+core	= 7.x
+
+files[]	= ugss.module
