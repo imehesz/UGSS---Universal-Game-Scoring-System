@@ -3,3 +3,5 @@ sites/files/*
 sites/private/*
 settings.php
 *.db
+protected/runtime/*
+assets/*
