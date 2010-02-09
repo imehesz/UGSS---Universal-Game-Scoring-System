@@ -47,6 +47,12 @@ $this->breadcrumbs=array(
 		/* margin-bottom:3px; */
     }
 
+    .blank-player-panel
+    {
+        background-color: inherit;
+        min-height: 20px;
+    }
+
 	.round
 	{
 		/* background-color: #fff; */
@@ -126,6 +132,18 @@ $this->breadcrumbs=array(
 		// we have to have a unique ID for the players in
 		// every round so we can call their score trough the IDs ...
 		player_id = 'score_' + round + '_' + playerCnt;
+
+        height = 5;
+
+        if( round > 1 )
+        {
+            for( var i=0; i<round-1;i++ )
+            {
+                addBlankPlayer( round );
+            }
+        }
+
+        /*
 		if( round == 1 )
 		{
 			 height = 5;	
@@ -142,9 +160,14 @@ $this->breadcrumbs=array(
 			 {
 			 	// height = height + 25;
 			 }
-		}
+		}*/
 		$( '#round_'+round ).append( '<div class="player-panel" style="margin-top:'+ height +'px;">' + name + ' <input title="score" name="'+player_id+'" id="'+player_id+'" type="text" size="2" value="0"></div>' );
 	}
+
+    var addBlankPlayer = function( round )
+    {
+		$( '#round_'+round ).append( '<div class="blank-player-panel" style="margin-top:5px;"></div>' );
+    }
 
 	var setErr = function( msg )
 	{
