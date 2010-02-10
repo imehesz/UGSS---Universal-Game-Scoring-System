@@ -50,7 +50,7 @@ $this->breadcrumbs=array(
     .blank-player-panel
     {
         background-color: inherit;
-        min-height: 20px;
+        min-height: 33px;
     }
 
 	.round
@@ -68,7 +68,7 @@ $this->breadcrumbs=array(
 	
 </style>
 <div class="form">
-	<form> <?php /* form fo show */ ?>
+	<form onsubmit='addPlayer();return false;'> <?php /* form fo show */ ?>
 		<div id="registration_panel">
 			<input type="text" name="name" id="name" value="" size="25"> <span id="err" style="color:#f00;"></span>
 			<div>
@@ -119,14 +119,14 @@ $this->breadcrumbs=array(
 
 		// players.push( name );
 		//$( '#round_1' ).append('<div class="player-panel">' + name + ' <input title="score" name="score_'+playerCnt+'" id="score_'+playerCnt+'" type="text" size="2" value="0"></div>');
-		addPlayerToRound( name, 1 );
+		addPlayerToRound( name, 1, -1 );
 		$('#name').val( '' );
 
 		// increasing the size of the board ...
 		$('#the_gameboard').css({'height':$('#round_1').height()+20});
 	}
 
-	var addPlayerToRound = function( name, round )
+	var addPlayerToRound = function( name, round, pos )
 	{
 		players.push( name );
 		// we have to have a unique ID for the players in
@@ -139,28 +139,18 @@ $this->breadcrumbs=array(
         {
             for( var i=0; i<round-1;i++ )
             {
-                addBlankPlayer( round );
+                // if this is the first player in this round, 
+                // we have only have to draw a 1/2 empty player
+                if( pos==0 && i==0 )
+                {
+                }
+                else
+                {
+                    addBlankPlayer( round );
+                }
             }
         }
 
-        /*
-		if( round == 1 )
-		{
-			 height = 5;	
-		}
-		else
-		{
-			 height = 5;
-
-			 if( players.length == 1 )
-			 {
-			 	// height = height + 10;
-			 }
-			 else
-			 {
-			 	// height = height + 25;
-			 }
-		}*/
 		$( '#round_'+round ).append( '<div class="player-panel" style="margin-top:'+ height +'px;">' + name + ' <input title="score" name="'+player_id+'" id="'+player_id+'" type="text" size="2" value="0"></div>' );
 	}
 
@@ -231,8 +221,8 @@ $this->breadcrumbs=array(
 								players 	= new Array();
 								for(var i=0;i<myobj.length;i++)
 								{
-									playerCnt++; //i think it stupid, have to revise it later
-									addPlayerToRound( myobj[i].name, curr_round );
+									playerCnt++; //i think it's stupid, have to revise it later
+									addPlayerToRound( myobj[i].name, curr_round, i );
 								}
 							}
 				}});
