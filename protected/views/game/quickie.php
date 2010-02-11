@@ -50,8 +50,14 @@ $this->breadcrumbs=array(
     .blank-player-panel
     {
         background-color: inherit;
-        min-height: 33px;
+        min-height: 29px;
     }
+
+	.half-blank-player-panel
+	{
+		background-color: inherit;
+		min-height: 15px;
+	}
 
 	.round
 	{
@@ -143,6 +149,7 @@ $this->breadcrumbs=array(
                 // we have only have to draw a 1/2 empty player
                 if( pos==0 && i==0 )
                 {
+					$( '#round_'+round ).append( '<div class="half-blank-player-panel" style="margin-top:5px;"></div>' );
                 }
                 else
                 {
